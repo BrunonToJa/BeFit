@@ -1,0 +1,22 @@
+﻿@model BeFit.Models.Sesja
+
+<h2>Usuń sesję treningową</h2>
+
+<h3>Czy na pewno chcesz usunąć tę sesję?</h3>
+
+<dl class="row">
+    <dt class="col-sm-3">Start</dt>
+    <dd class="col-sm-9">@Model.Start.ToString("yyyy-MM-dd HH:mm")</dd>
+
+    <dt class="col-sm-3">Koniec</dt>
+    <dd class="col-sm-9">@Model.Koniec.ToString("yyyy-MM-dd HH:mm")</dd>
+
+    <dt class="col-sm-3">Czas trwania</dt>
+    <dd class="col-sm-9">@((Model.Koniec - Model.Start).TotalMinutes.ToString("0")) minut</dd>
+</dl>
+
+<form asp-action="Usun" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a class="btn btn-secondary" asp-action="Index">Anuluj</a>
+</form>

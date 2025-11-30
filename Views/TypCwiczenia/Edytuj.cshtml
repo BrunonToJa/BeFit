@@ -1,0 +1,20 @@
+﻿@model BeFit.Models.TypCwiczenia
+
+<h2>Edytuj typ ćwiczenia</h2>
+
+<form asp-action="Edytuj" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Nazwa"></label>
+        <input asp-for="Nazwa" class="form-control" />
+        <span asp-validation-for="Nazwa" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-warning mt-3">Zapisz zmiany</button>
+    <a class="btn btn-secondary mt-3" asp-action="Index">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,14 @@
+﻿@model BeFit.Models.TypCwiczenia
+
+<h2>Szczegóły typu ćwiczenia</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Nazwa</dt>
+    <dd class="col-sm-9">@Model.Nazwa</dd>
+</dl>
+
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-warning" asp-action="Edytuj" asp-route-id="@Model.Id">Edytuj</a>
+}
+<a class="btn btn-primary" asp-action="Index">Powrót do listy</a>

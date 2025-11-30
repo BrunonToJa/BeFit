@@ -1,0 +1,46 @@
+﻿@model BeFit.Models.Cwiczenie
+
+<h2>Dodaj nowe ćwiczenie</h2>
+
+<form asp-action="Utworz" method="post">
+    <div class="form-group">
+        <label asp-for="SesjaId"></label>
+        <select asp-for="SesjaId" class="form-control" asp-items="ViewBag.SesjaId">
+            <option value="">-- Wybierz sesję --</option>
+        </select>
+        <span asp-validation-for="SesjaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TypCwiczeniaId"></label>
+        <select asp-for="TypCwiczeniaId" class="form-control" asp-items="ViewBag.TypCwiczeniaId">
+            <option value="">-- Wybierz typ ćwiczenia --</option>
+        </select>
+        <span asp-validation-for="TypCwiczeniaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Serie"></label>
+        <input asp-for="Serie" class="form-control" />
+        <span asp-validation-for="Serie" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Powtorzenia"></label>
+        <input asp-for="Powtorzenia" class="form-control" />
+        <span asp-validation-for="Powtorzenia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Ciezar"></label>
+        <input asp-for="Ciezar" class="form-control" type="number" step="0.5" />
+        <span asp-validation-for="Ciezar" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Zapisz</button>
+    <a class="btn btn-secondary mt-3" asp-action="Index">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

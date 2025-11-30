@@ -1,0 +1,43 @@
+﻿@model BeFit.Models.Sesja
+
+<h2>Szczegóły sesji treningowej</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Start</dt>
+    <dd class="col-sm-9">@Model.Start.ToString("yyyy-MM-dd HH:mm")</dd>
+
+    <dt class="col-sm-3">Koniec</dt>
+    <dd class="col-sm-9">@Model.Koniec.ToString("yyyy-MM-dd HH:mm")</dd>
+
+    <dt class="col-sm-3">Czas trwania</dt>
+    <dd class="col-sm-9">@((Model.Koniec - Model.Start).TotalMinutes.ToString("0")) minut</dd>
+</dl>
+
+@if (Model.Cwiczenia != null && Model.Cwiczenia.Any())
+{
+    <h3>Ćwiczenia w tej sesji</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Typ ćwiczenia</th>
+                <th>Serie</th>
+                <th>Powtórzenia</th>
+                <th>Ciężar (kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cwiczenie in Model.Cwiczenia)
+            {
+                <tr>
+                    <td>@cwiczenie.TypCwiczenia?.Nazwa</td>
+                    <td>@cwiczenie.Serie</td>
+                    <td>@cwiczenie.Powtorzenia</td>
+                    <td>@cwiczenie.Ciezar</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a class="btn btn-warning" asp-action="Edytuj" asp-route-id="@Model.Id">Edytuj</a>
+<a class="btn btn-primary" asp-action="Index">Powrót do listy</a>

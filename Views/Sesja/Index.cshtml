@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BeFit.Models.Sesja>
+
+<h2>Lista sesji treningowych</h2>
+
+<a class="btn btn-primary" asp-controller="Sesja" asp-action="Utworz">Dodaj nową sesję</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start</th>
+            <th>Koniec</th>
+            <th>Czas trwania</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Start.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@item.Koniec.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@((item.Koniec - item.Start).TotalMinutes.ToString("0")) min</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Szczegoly" asp-route-id="@item.Id">Szczegóły</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edytuj" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Usun" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BeFit.Models.TypCwiczenia>
+
+<h2>Lista typów ćwiczeń</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p><a class="btn btn-primary" asp-action="Utworz">Dodaj nowy typ ćwiczenia</a></p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa ćwiczenia</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nazwa</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Szczegoly" asp-route-id="@item.Id">Szczegóły</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-warning btn-sm" asp-action="Edytuj" asp-route-id="@item.Id">Edytuj</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Usun" asp-route-id="@item.Id">Usuń</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
